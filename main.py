@@ -53,7 +53,7 @@ def parse_category(*, URL: str) -> list:
     results = []
 
     with concurrent.futures.ThreadPoolExecutor(8) as ex:
-        futures = [ex.submit(parse_pages, page, URL) for page in range(1, num_pages)]
+        futures = [ex.submit(parse_pages, page, URL) for page in range(1, num_pages+1)]
         for fut in concurrent.futures.as_completed(futures):
             res = fut.result()
             results.extend(res)
